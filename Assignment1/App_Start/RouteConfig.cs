@@ -18,6 +18,12 @@ namespace Assignment1
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name:"Search",
+                url: "Home/Search/{id}",
+                defaults: new { controller = "Home", action = "Search", id= UrlParameter.Optional }
+
+            );
         }
     }
 }

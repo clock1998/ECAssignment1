@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Profile Picture";
+}
+<h2>Profile Pictures</h2>
+<dl class="dl-horizontal">
+@foreach (var pic in ViewBag.Picture)
+{
+    <dd>
+        <img src="@pic.relative_path"/>
+    </dd>
+    <dd>
+        Description: @pic.description
+    </dd>
+    <dd>
+        @Html.ActionLink("Delete","Delete",new { id=pic.Id})
+    </dd>
+    <dd>
+        <hl/>
+    </dd>
+}
+</dl>
+<h2>Uploade Profile Picture</h2>
+@using (Html.BeginForm("Index", "Picture", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{   
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="file" name="file" />
+            <input type="submit" name="Submit" id="Submit" value="Upload" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <label class = "control-label col-md-2">Description:</label>
+            <input type="text" name="Description" id="Description" class = "form-control"/>
+        </div>
+    </div>
+}
+

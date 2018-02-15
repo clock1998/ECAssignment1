@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Assignment1" Class="ProductCatalogDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Assignment1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Assignment1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="item" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="shipping" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="seller" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="quantities" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="specs" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="handling" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Association Name="Product_Product_image" Member="Product_images" ThisKey="Id" OtherKey="product_id" Type="Product_image" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product_images" Member="Product_images">
+    <Type Name="Product_image">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="product_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="path" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_Product_image" Member="Product" ThisKey="product_id" OtherKey="Id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

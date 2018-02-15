@@ -1,0 +1,87 @@
+﻿@model Assignment1.profile_information
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>profile_information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.middle_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.middle_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_name)
+        </dd>
+    </dl>
+    <h4>Address Information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in ViewBag.address)
+        {
+            <dt>state</dt>
+            <dd> @item.state</dd>
+
+            <dt>Street Address</dt>
+            <dd> @item.street_address</dd>
+
+            <dt>Description</dt>
+            <dd>@item.description</dd>
+
+            <dt>Province</dt>
+            <dd>@item.province</dd>
+
+            <dt>City</dt>
+            <dd>@item.city</dd>
+            <dt>----------------</dt>
+            <dd>----------------</dd>
+        }
+    </dl>
+    <h4>Profile Picture</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in ViewBag.picture)
+        {
+            <dt>Description</dt>
+            <dd> @item.description</dd>
+            <dt>Profile Picture:</dt>
+            <dd> <img src="@item.relative_path" /></dd>
+
+        }
+    </dl>
+    <h4>Contact Information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in ViewBag.contact)
+        {
+            <dt>Type</dt>
+            <dd> @item.contact_type</dd>
+            <dt>Data</dt>
+            <dd> @item.contact_data</dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
