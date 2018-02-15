@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Assignment1" Class="Assignment1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Assignment1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Assignment1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.address_information" Member="address_informations">
+    <Type Name="address_information">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="personid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="street_address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="city" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="province" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="zip_code" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="countryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="country_address_information" Member="country" ThisKey="countryid" OtherKey="Id" Type="country" IsForeignKey="true" />
+      <Association Name="profile_information_address_information" Member="profile_information" ThisKey="personid" OtherKey="Id" Type="profile_information" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.contact_information" Member="contact_informations">
+    <Type Name="contact_information">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="personid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="contact_type" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="contact_data" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="profile_information_contact_information" Member="profile_information" ThisKey="personid" OtherKey="Id" Type="profile_information" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.countries" Member="countries">
+    <Type Name="country">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="country_code" Type="System.String" DbType="NChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="country_name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="country_address_information" Member="address_informations" ThisKey="Id" OtherKey="countryid" Type="address_information" />
+    </Type>
+  </Table>
+  <Table Name="dbo.profile_information" Member="profile_informations">
+    <Type Name="profile_information">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="first_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="middle_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="last_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="profile_information_address_information" Member="address_informations" ThisKey="Id" OtherKey="personid" Type="address_information" />
+      <Association Name="profile_information_contact_information" Member="contact_informations" ThisKey="Id" OtherKey="personid" Type="contact_information" />
+      <Association Name="profile_information_profile_picture" Member="profile_pictures" ThisKey="Id" OtherKey="personid" Type="profile_picture" />
+    </Type>
+  </Table>
+  <Table Name="dbo.profile_pictures" Member="profile_pictures">
+    <Type Name="profile_picture">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="personid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="relative_path" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="profile_information_profile_picture" Member="profile_information" ThisKey="personid" OtherKey="Id" Type="profile_information" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
